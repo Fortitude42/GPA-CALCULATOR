@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Results</title>
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/styles.css" rel="stylesheet">  
+  <script src="js/chart.min.js"></script>
+</head>
+
+<body>
+  <nav class= "navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+      <a class="navbar-brand ms-100" href="/home.html">
+        <img src="/img/logo1.jpg" alt="" width="80" height="80">
+      </a>
+  
+      
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mb-2">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="/home.html">Home</a>
+          </li>
+        </ul>        
+      </div>
+    </div>
+  </nav>    
+
+  <div class="ms-105 mt-4 w-75">
+    <h3 class="ps-2 pt-1 w-75 pb-1 mt-4 border border-white border-1 rounded" >OVERALL GPA: <span class="text-danger" id="overall"></span></h3>
+    <div class="mt-4 w-75 ps-2 pt-1 pb-1 border border-white border-1 rounded">
+      <canvas id="coursesBarChart" height="150"></canvas>
+    </div>
+    <div class="mt-4 w-75 ps-2 pt-1 pb-1 border border-white border-1 rounded">
+      <canvas id="categoryBarChart" height="150"></canvas>
+    </div>
+
+    <div class="ps-5 pe-20 mt-4 w-75 pt-2 pb-2 border border-white border-1 rounded d-flex justify-content-center">
+      <div class="w-75">
+        <canvas class="mt-2" id="coursesDoughnutChart"></canvas>
+      </div>
+    </div>
+    
+    <div class="ps-5 pe-20 mt-4 w-75 pt-2 pb-2 border border-white border-1 rounded d-flex justify-content-center">
+      <div class="w-75">
+        <canvas class="mt-2" id="categoryDoughnutChart"></canvas>
+      </div>
+    </div>
+
+  </div>  
+
+  
+  <script src="js/results.js"></script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+body{
+  background:#3266a8;
+  color: #fff;
+  font-family: serif;
+  scroll-behavior: smoth;
+}
+
+.abs{
+  position: relative;
+  left: 1100px;
+}
+
+.posButton{
+  position: relative;
+  left: 480px;
+}
+
+.register{
+  position: relative;
+  left: 120px;
+}
+
+
+.ms-100{
+  margin-left: 100px;
+}
+
+.ms-105{
+  margin-left:105px;
+}
