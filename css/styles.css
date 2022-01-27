@@ -1,0 +1,49 @@
+body{
+  background:#3266a8;
+  color: #fff;
+  font-family: serif;
+  scroll-behavior: smoth;
+}
+
+table {
+  border-collapse: collapse;
+  border: 1px solid grey;
+  width: 50%
+}
+
+.posTable{
+  position: relative;
+  left: 330px;
+}
+
+td{
+  width: 40%;
+}
+
+tr{
+  width: 10%;
+}
+
+.abs{
+  position: relative;
+  left: 1100px;
+}
+
+.posButton{
+  position: relative;
+  left: 480px;
+}
+
+.register{
+  position: relative;
+  left: 120px;
+}
+
+
+.ms-100{
+  margin-left: 100px;
+}
+
+.ms-105{
+  margin-left:105px;
+}
