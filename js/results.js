@@ -36,7 +36,7 @@ function calculate_gpa(courses) {
 */
 let bar_category_data, bar_category_comparing_data, doughnut_courses_data;
 let bar_courses_data, doughnut_category_data, doughnut_category_colors, doughnut_courses_colors;
-
+let overlook_category_data, overlook_courses_data;
 
 init();
 function init() {
@@ -127,6 +127,33 @@ function init() {
             doughnut_category_colors.push('rgb(255, 0, 0)')
         else    
             doughnut_category_colors.push(colors[(i++) % colors.length])
+
+    /*
+    * Collecting overlook by courses data
+    */            
+    overlook_courses_data = new Map();
+    for (let course of courses)
+        overlook_courses_data.set(course.name, (((4 - course.grade) * course.credits) / totCredits).toFixed(2));    
+
+    overlook_courses_data = new Map([...overlook_courses_data.entries()].sort((a, b) => {        
+        return b[1] - a[1];
+    }));
+
+    /*
+    * Collecting overlook by category data    
+    */
+    overlook_category_data = new Map();
+    for (let category of categories) {
+        let sum = 0;
+        for (let course of courses)
+            if (course.category == category) 
+                sum += (4 - course.grade) * course.credits;
+        overlook_category_data.set(category, (sum / totCredits).toFixed(2));
+    }
+
+    overlook_category_data = new Map([...overlook_category_data.entries()].sort((a, b) => {        
+        return b[1] - a[1];
+    }));
 }
 
 /*
@@ -166,10 +193,20 @@ const barCategoryData = {
     ],
 }
 
+
+const doughnutCoursesData = {
+    labels: Array.from( doughnut_courses_data.keys() ),    
+    datasets: [{        
+        data: Array.from(doughnut_courses_data.values()),
+        backgroundColor: doughnut_courses_colors,
+        borderColor: 'rgb(0, 51, 102)',
+        borderWidth: 1,
+    }]
+}
+
 const doughnutCategoryData = {
     labels: Array.from( doughnut_category_data.keys() ),    
-    datasets: [{
-        label:'Shares in gpa by category',
+    datasets: [{        
         data: Array.from(doughnut_category_data.values()),
         backgroundColor: doughnut_category_colors,
         borderColor: 'rgb(0, 51, 102)',
@@ -178,12 +215,21 @@ const doughnutCategoryData = {
 }
 
 
-const doughnutCoursesData = {
-    labels: Array.from( doughnut_courses_data.keys() ),    
-    datasets: [{
-        label:'Shares in gpa by category',
-        data: Array.from(doughnut_courses_data.values()),
+const overlookCoursesData = {
+    labels: Array.from( overlook_courses_data.keys() ),    
+    datasets: [{        
+        data: Array.from(overlook_courses_data.values()),
         backgroundColor: doughnut_courses_colors,
+        borderColor: 'rgb(0, 51, 102)',
+        borderWidth: 1,
+    }]
+}
+
+const overlookCategoryData = {
+    labels: Array.from( overlook_category_data.keys() ),    
+    datasets: [{        
+        data: Array.from(overlook_category_data.values()),
+        backgroundColor: doughnut_category_colors,
         borderColor: 'rgb(0, 51, 102)',
         borderWidth: 1,
     }]
@@ -228,6 +274,30 @@ const barOptions = {
     }
 }
 
+
+const doughnutCoursesOptions = {
+    responsive: true,
+    plugins:{
+        legend:{
+            position: 'right',            
+            labels: {                
+                color: 'white',
+                font: {
+                    size: 9,
+                }
+            },                    
+        },
+        title: {
+            display: true,
+            color: 'white',
+            text: 'Contribution to GPA by course',
+            font:{
+                size:18,
+            }
+        }
+    }
+}
+
 const doughnutCategoryOptions = {
     responsive: true,
     plugins:{
@@ -252,7 +322,8 @@ const doughnutCategoryOptions = {
     }
 }
 
-const doughnutCoursesOptions = {
+
+const overlookCoursesOptions = {
     responsive: true,
     plugins:{
         legend:{
@@ -267,9 +338,33 @@ const doughnutCoursesOptions = {
         title: {
             display: true,
             color: 'white',
-            text: 'Contribution to GPA by course',
+            text: 'Missed points by courses',
             font:{
                 size:18,
+            }
+        }
+    }
+}
+
+const overlookCategoryOptions = {
+    responsive: true,
+    plugins:{
+        legend:{
+            position: 'top',
+            labels: {                
+                color: 'white',
+                font: {
+                    size: 13,
+                }
+            },     
+
+        },
+        title: {                
+            display: true,
+            color: 'white',
+            text: 'Missed points by category',
+            font:{
+                size: 18,
             }
         }
     }
@@ -307,4 +402,18 @@ const categoryDoughnutChart = new Chart(ctx_doughnut_category, {
     type: 'doughnut',
     data: doughnutCategoryData,
     options: doughnutCategoryOptions,
+}) 
+
+const ctx_overlook_courses = document.getElementById('coursesOverlookChart').getContext('2d');
+const coursesOverlookChart = new Chart(ctx_overlook_courses, {
+    type: 'doughnut',
+    data: overlookCoursesData,
+    options: overlookCoursesOptions,
+}) 
+
+const ctx_overlook_category = document.getElementById('categoryOverlookChart').getContext('2d');
+const categoryOverlookChart = new Chart(ctx_overlook_category, {
+    type: 'doughnut',
+    data: overlookCategoryData,
+    options: overlookCategoryOptions,
 }) 

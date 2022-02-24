@@ -36,8 +36,7 @@ const courses = [
 	new Course("Labaratory of programming", 5, "IT", false, 1, 3),	
 ]
 
-const grades = [
-    ["A+", 4],
+const grades = [    
     ["A", 4],
     ["A-", 3.7],
     ["B+", 3.3],
@@ -83,59 +82,59 @@ function init()     {
     
   
   	for (let course of selected_courses) {		
-		var div = document.createElement("div");		
-		div.classList.add("d-flex");		
-		if (course !== selected_courses[0])
-		    div.classList.add("mt-2")
+			var div = document.createElement("div");		
+			div.classList.add("d-flex");		
+			if (course !== selected_courses[0])
+					div.classList.add("mt-2")
 
+			
+			var inputName = document.createElement("input");	
+			inputName.type = "text";
+			inputName.value = course.name;
+			inputName.readOnly = true;
+			inputName.classList.add("form-control");
+			inputName.classList.add("w-25");
+
+
+			var inputCredits = document.createElement("input");	
+			inputCredits.type = "text";
+			inputCredits.value = course.credits;
+			inputCredits.readOnly = true;
+			inputCredits.classList.add("form-control");
+			inputCredits.classList.add("w-25");
+			inputCredits.classList.add("ms-2");
+
+			var selectDiv = document.createElement("div");
+			selectDiv.classList.add("w-25");
+			selectDiv.classList.add("ms-2");
+					
+
+			var select = document.createElement("select");
+					select.setAttribute("id", course.name);
+			select.classList.add("form-select");
+			select.name = course.name;
+			select.id = course.name;
 		
-		var inputName = document.createElement("input");	
-		inputName.type = "text";
-		inputName.value = course.name;
-		inputName.readOnly = true;
-		inputName.classList.add("form-control");
-		inputName.classList.add("w-25");
+			var selected_option = document.createElement("option");
+			selected_option.text = '-';
+					selected_option.value = -1;
+			selected_option.selected = true;
+			
+			select.appendChild(selected_option);
+			for (const grade of grades) {
+				var option = document.createElement("option");
+				option.text = grade[0];
+				option.value = grade[1];
+				select.appendChild(option);
+			}
+			
+			selectDiv.appendChild(select);
+			
 
-
-		var inputCredits = document.createElement("input");	
-		inputCredits.type = "text";
-		inputCredits.value = course.credits;
-		inputCredits.readOnly = true;
-		inputCredits.classList.add("form-control");
-		inputCredits.classList.add("w-25");
-		inputCredits.classList.add("ms-2");
-
-		var selectDiv = document.createElement("div");
-		selectDiv.classList.add("w-25");
-		selectDiv.classList.add("ms-2");
-        
-
-		var select = document.createElement("select");
-        select.setAttribute("id", course.name);
-		select.classList.add("form-select");
-		select.name = course.name;
-		select.id = course.name;
-	
-		var selected_option = document.createElement("option");
-		selected_option.text = '-';
-        selected_option.value = -1;
-		selected_option.selected = true;
-		
-		select.appendChild(selected_option);
-		for (const grade of grades) {
-			var option = document.createElement("option");
-			option.text = grade[0];
-			option.value = grade[1];
-			select.appendChild(option);
-		}
-		
-		selectDiv.appendChild(select);
-		
-
-		div.appendChild(inputName);		
-		div.appendChild(inputCredits);
-		div.appendChild(selectDiv);
-        document.getElementById('display-courses').appendChild(div);
+			div.appendChild(inputName);		
+			div.appendChild(inputCredits);
+			div.appendChild(selectDiv);
+			document.getElementById('display-courses').appendChild(div);
   }
 }
 

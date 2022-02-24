@@ -1,5 +1,5 @@
 body{
-  background:#3266a8;
+  background:#03045E;
   color: #fff;
   font-family: serif;
   scroll-behavior: smoth;
@@ -7,17 +7,15 @@ body{
 
 table {
   border-collapse: collapse;
-  border: 1px solid grey;
-  width: 50%
+  border: 1px solid grey;  
 }
 
 .posTable{
-  position: relative;
-  left: 330px;
+  position: relative;  
 }
 
 td{
-  width: 40%;
+  width: 70%;
 }
 
 tr{
