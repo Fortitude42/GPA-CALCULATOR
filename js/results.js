@@ -338,7 +338,7 @@ const overlookCoursesOptions = {
         title: {
             display: true,
             color: 'white',
-            text: 'Missed points by courses',
+            text: 'Missed points by course',
             font:{
                 size:18,
             }
