@@ -7,18 +7,18 @@ register.addEventListener("click", ()=>{
 
 
     if (pass1.length == 0 || pass2.length==0 || email.length == 0) {
-        return alert('Please fill in all fields ');
+        return alert('Please, fill in all the fields');
     }
 
     else if (pass1.length < 8){
-        return alert('Your password is less than 8 symbols');
+        return alert('Your password must contain at least 8 characters');
     }
 
     else if (pass1 != pass2){
-        return alert('you have incredibly repeated the password');
+        return alert('Passwords do not match');
     }
     else 
-        document.location.replace("http://127.0.0.1:5500/signin.html");
+        document.location.replace("http://127.0.0.1:5500/sign-in.html");
 
     localStorage.setItem("email", email);
     localStorage.setItem("password", pass1);
