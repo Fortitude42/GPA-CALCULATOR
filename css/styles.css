@@ -45,3 +45,7 @@ tr{
 .ms-105{
   margin-left:105px;
 }
+
+a {
+  text-decoration: none; /* Убираем подчёркивание */
+ }
