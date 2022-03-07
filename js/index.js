@@ -15,6 +15,7 @@ class Course {
 
 
 const courses = [
+	//1.1
 	new Course("Foreign language", 5, "Languages", false, 1, 1),
 	new Course("Culturology", 2, "Society", false, 1, 1),
 	new Course("ICT", 5, "IT", false, 1, 1),
@@ -22,18 +23,61 @@ const courses = [
 	new Course("Practice", 2, "Practice", false, 1, 1),
 	new Course("Linear Algebra", 5, "Math", false, 1, 1),
 	new Course("Introduction to Programming", 5, "IT", false, 1, 1),
+	//1.2
 	new Course("Physical Culture 2", 2, "IT", false, 1, 2),
 	new Course("Modern history of Kazakhstan", 5, "Society", false, 1, 2),
 	new Course("Foreign Language 2", 5, "Languages", false, 1, 2),
 	new Course("Discrete Math", 5, "Math", false, 1, 2),
 	new Course("Web Programming 1", 5, "IT", false, 1, 2),
 	new Course("Object Oriented Programming in Java", 5, "IT", false, 1, 2),
+	//1.3
 	new Course("Physical Culture 3", 2, "Sport", false, 1, 3),
 	new Course("Algorithms and Data structure", 5, "IT", false, 1, 3),
 	new Course("Web technologies 2", 5, "IT", false, 1, 3),
 	new Course("Math analysis 1", 5, "Math", false, 1, 3),
 	new Course("Professional English language", 5, "Languages", false, 1, 3),	
 	new Course("Labaratory of programming", 5, "IT", false, 1, 3),	
+	//2.1
+	new Course("Kazakh(Russian) language 1", 5, "Languages", false, 2, 1),	
+	new Course("Physical Culture", 2, "Sport", false, 2, 1),	
+	new Course("Database Management Systems", 5, "IT", false, 2, 1),
+	new Course("Computer organization and architecture", 5, "IT", false, 2, 1),
+	new Course("Advanced programming 1(C#)", 5, "IT", false, 2, 1),
+	new Course("Software patterns(C#)", 5, "IT", false, 2, 1),	
+	//2.2
+	new Course("Kazakh(Russian) language 2", 5, "Languages", false, 2, 2),	
+	new Course("Theory of Probability and Mathematical Statistics", 5, "Math", false, 2, 2),	
+	new Course("Network application architecture", 5, "IT", false, 2, 2),	
+	new Course("Mobile development 1(Android)", 5, "IT", false, 2, 2),	
+	new Course("Advanced programming 2(C#)", 5, "IT", false, 2, 2),	
+	new Course("Operating systems and computer networks", 5, "IT", false, 2, 2),	
+	//2.3
+	new Course("Industrial practice", 4, "Practice", false, 2, 3),	
+	new Course("Software factory", 5, "IT", false, 2, 3),	
+	new Course("Political Science", 2, "Society", false, 2, 3),	
+	new Course("Psychology", 2, "Society", false, 2, 3),	
+	new Course("Mobile development 2(Android)", 5, "IT", false, 2, 3),	
+	new Course("Analysis of network application performance", 5, "IT", false, 2, 3),	
+
+	//3.1
+	new Course("Machine Learning Algorithms", 5, "IT", false, 3, 1),	
+	new Course("Cloud computing applications", 5, "IT", false, 3, 1),	
+	new Course("Technological Enterprise", 5, "IT", false, 3, 1),	
+	new Course("Sociology", 2, "Society", false, 3, 1),	
+	new Course("Quality Assurance and Testing", 5, "IT", false, 3, 1),	
+	new Course("Mastering design thinking", 2, "IT", false, 3, 1),	
+
+	//3.2
+	new Course("Distributed algorithms and parallel computing", 5, "IT", false, 3, 2),	
+	new Course("Philosophy", 5, "Society", false, 3, 2),	
+	new Course("Project Management", 5, "IT", false, 3, 2),	
+	new Course("Information Security Fundamentals", 5, "IT", false, 3, 2),	
+	new Course("Applied applications analysis", 5, "IT", false, 3, 2),	
+
+	//3.3
+	new Course("Industrial practice", 8, "Practice", false, 3, 3),	
+	new Course("Writing Diploma Work (Project) and Defence", 12, "Diploma", false, 3, 3),	
+	new Course("Undergraduate practice", 4, "Practice", false, 3, 3),	
 ]
 
 const grades = [    
@@ -157,7 +201,9 @@ button.addEventListener("click", () => {
         var select = document.getElementById(course.name);
         var selected_grade = select.options[select.selectedIndex].value;
         if (selected_grade == -1) {
-            alert('Please, fill all the grades')
+						if (course.isElective)
+							continue;
+            alert('Please fill all the grades of non-elective subjects')
             return;
         }
         course.grade = selected_grade;
